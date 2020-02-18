@@ -2,3 +2,4 @@ __config.py
 automation.log
 .idea/
 .pytest_cache/
+geckodriver.log
