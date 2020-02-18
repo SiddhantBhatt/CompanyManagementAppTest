@@ -9,7 +9,7 @@ import pytest
 import utilities.custom_logger as cl
 import logging
 import time
-
+import configfiles.__config as creds
 
 @pytest.mark.usefixtures("oneTimeSetUp", "setUp")
 class LoginTests(unittest.TestCase):
@@ -34,7 +34,7 @@ class LoginTests(unittest.TestCase):
         self.log.info("*#" * 20)
         self.lp.logout()
         self.lp.clickLoginLink()
-        self.lp.login("sidb@mailinator.com", "qwerty123456")
+        self.lp.login(creds.username, "qwerty123456")
         result = self.lp.verifyLoginFailed()
         assert result == True
 
@@ -48,7 +48,7 @@ class LoginTests(unittest.TestCase):
         self.log.info("*#" * 20)
         self.log.info("test_t2validLogin started")
         self.log.info("*#" * 20)
-        self.lp.login("sidb@mailinator.com", "qwerty12345")
+        self.lp.login(creds.username, creds.password)
         time.sleep(4)
         result1 = self.lp.verifyLoginTitle()
         self.ts.mark(result1, "Title Verification")

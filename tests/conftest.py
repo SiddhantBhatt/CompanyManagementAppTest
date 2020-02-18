@@ -5,6 +5,7 @@ Configuration file for running tests
 import pytest
 from base.webdriverfactory import WebDriverFactory
 from pages.home.login_page import LoginPage
+import configfiles.__config as creds
 
 @pytest.yield_fixture()
 #@pytest.fixture()
@@ -27,7 +28,7 @@ def oneTimeSetUp(request, browser):
     driver = wdf.getWebDriverInstance()
     lp = LoginPage(driver)
     lp.clickLoginLink()
-    lp.login("sidb@mailinator.com", "qwerty12345")
+    lp.login(creds.username, creds.password)
 
     if request.cls is not None:
         request.cls.driver = driver
